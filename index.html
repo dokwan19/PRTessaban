@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+		.marquee {
+            width: 100%; /* ปรับขนาดตามที่ต้องการ */
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+
+        .marquee h5 {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 40s linear infinite; /* ปรับเวลาให้เหมาะสม */
+        }
+		
+		@keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* ตั้งค่าเบื้องต้นสำหรับตารางและเมนู */
+        table {
+            width: 1230px;
+            border: 0;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        th {
+    height: 61px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    background-color: #FFFFFF; /*#f8f8f8*/
+    cursor: pointer;
+        }
+
+        th img {
+            width: 240px;
+            height: 57px;
+        }
+
+        /* ตั้งค่าแถบสีน้ำเงินที่เลื่อนตาม */
+        th:hover::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;			
+            background-color: blue;
+        }
+
+        /* ตั้งค่าการแสดงผลเมนูย่อย */
+        th:hover .dropdown, .dropdown-item:hover .nested-dropdown {
+            display: block;
+        }
+
+        .dropdown, .nested-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 0px solid #ccc;
+            z-index: 1;
+			width: 320px; /* ปรับขนาดความกว้างตามความต้องการ */
+        }
+
+        .dropdown {
+            top: 61px;
+            left: 0;
+            width: 200%; /*ปรับขนาดความกว้างของเมนูย่อย*/
+        }
+		
+		.dropdown a img {
+			margin-right: 10px;
+			width: 20px;
+			height: 20px;				
+		}
+
+        .nested-dropdown {
+            top: 0;
+            left: 100%;
+            margin-left: 1px;
+        }
+
+        .dropdown a, .nested-dropdown a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;			
+			text-align: left; /* ทำให้ตัวหนังสือชิดซ้าย */
+            font-size: 14px; /* กำหนดขนาดตัวหนังสือตามที่ต้องการ */
+			width: 320px; /* ปรับขนาดความกว้างตามความต้องการ */
+        }
+
+        .dropdown a:hover, .nested-dropdown a:hover {
+            /*background-color: #FFFFFF;
+			border-left: 2px dotted blue/*solid blue; /* เพิ่มเส้นสีน้ำเงินที่ด้านล่างเมื่อ hover */
+			background-color: #A9ACF1; /* กำหนดสีของจุดวงกลม */
+            border-left-radius: 1%; /* ทำให้เป็นรูปวงกลม */
+        }
+
+        /* การจัดการสำหรับเมนูย่อยที่มีเมนูย่อยเพิ่มเติม */
+        .dropdown-item {
+            position: relative;
+        }
+		
+    body {
+    background-color: #FFFFFF;
+}
+    body,td,th {
+    color: #1A1A1A; /*เปลี่ยนสีตัวหนังสือในตาราง*/
+    font-size: 16px;	
+			
+}		
+    </style>
+	
+<script type="text/javascript">
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+</script>
+	
+</head>
+<body>
+<table>
+        <tbody>
+          <tr bgcolor="#FFFFFF">
+                <th bgcolor="#3154D9"><img src="pictur/logo1_nkp.png" alt="Logo"></th>
+                <th style="color: #000000">หน้าหลัก</th>			  
+            <th class="menu-intro" style="color: #000000;">แนะนำเทศบาล
+                  <div class="dropdown">
+					  
+                        <div class="dropdown-item">
+                            <a href="#"><img src="icon/icon1.png" alt="Icon">ข้อมูลทั่วไป</a>
+                            <div class="nested-dropdown">
+                                <a href="#"><img src="icon/icon1.png" alt="Icon">ข้อมูลเทศบาล</a>
+                                <a href="#"><img src="icon/icon1.png" alt="Icon">โครงสร้าง</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">ข้อมูลผู้บริหาร</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">อำนาจหน้าที่</a>
+                            </div>
+                        </div>
+					  
+                        <div class="dropdown-item">
+                            <a href="#"><img src="icon/icon1.png" alt="Icon">บุคลากร</a>
+                            <div class="nested-dropdown">
+                                <a href="#"><img src="icon/icon1.png" alt="Icon">คณะผู้บริหารข้าราชการการเมืองท้องถิ่น</a>
+                                <a href="#"><img src="icon/icon1.png" alt="Icon">คณะผู้บริหารพนักงานข้าราชการส่วนท้องถิ่น</a>
+                            </div>
+                        </div>
+					  
+						<div class="dropdown-item">
+                            <a href="#"><img src="icon/icon1.png" alt="Icon">หน่วยงานภายใน</a>
+                            <div class="nested-dropdown">
+                                <a href="#"><img src="icon/icon1.png" alt="Icon">สำนักปลัดเทศบาล</a>
+                                <a href="#"><img src="icon/icon1.png" alt="Icon">สำนักคลัง</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">สำนักการศึกษา</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">สำนักการสำนักช่าง</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">สำนักสาธารณสุขและสิ่งแวดล้อม</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">กองการประปา</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">กองยุทธศาสตร์และงบประมาณ</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">กองสวัสดิการสังคม</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">กองการท่องเที่ยวและกีฬา</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">กองการเจ้าหน้าที่</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">สถานธนานุบาล 1</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">สถานธนานุบาล 2</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">สถานธนานุบาล 3</a>
+								<a href="#"><img src="icon/icon1.png" alt="Icon">สถานศึกษาในสังกัดเทศบาลนครนครปฐม จำนวน 12 แห่ง คลิ๊กเพื่อดูข้อมูล</a>							
+                            </div>
+                        </div>					  
+                  </div>                    
+                </th>
+			  
+                <th class="menu-docs" style="color: #000000;">เอกสาร/รายงาน
+                  <div class="dropdown">
+                        <a href="#"><img src="icon/icon1.png" alt="Icon">แผนพัฒนาท้องถิ่น</a>
+                        <a href="#"><img src="icon/icon1.png" alt="Icon">เทศบัญญัติงบประมาณรายจ่ายประจำปี</a>
+						<a href="#"><img src="icon/icon1.png" alt="Icon">รายงานการติดตามประเมินผล</a>
+						<a href="#"><img src="icon/icon1.png" alt="Icon">แผนพัฒนาการศึกษา</a>
+						<a href="#"><img src="icon/icon1.png" alt="Icon">งานกิจการสภาเทศบาลนครนครปฐม</a>
+						<a href="#"><img src="icon/icon1.png" alt="Icon">รายงานสรุปผลการประเมินประสิทธิภาพของ อปท. (LPA)</a>
+						<a href="#"><img src="icon/icon1.png" alt="Icon">การประเมินคุณธรรมและความโปร่งใส (ITA)</a>
+						<a href="#"><img src="icon/icon1.png" alt="Icon">การประเมินคุณธรรมและความโปร่งใส (ITA) 2023</a>
+						<a href="#"><img src="icon/icon1.png" alt="Icon">รายงานการประชุมคณะกรรมการพัฒนาเทศบาลและประชาคมท้องถิ่น</a>
+						<a href="#"><img src="icon/icon1.png" alt="Icon">รายงาน/เอกสารดาวน์โหลดอื่นๆ</a>								
+                  </div>
+                </th>
+			  
+                <th class="menu-services" style="color: #3154D9;"><span style="color: #000000">บริการประชาชน</span><div class="dropdown">
+                      <a href="#"><img src="icon/icon1.png" alt="Icon">ย่อย 1</a>
+                      <a href="#"><img src="icon/icon1.png" alt="Icon">ย่อย 2</a>
+                  </div>
+                </th>
+			  
+                <th class="menu-eservice" style="color: #000000;">E-SERVICE
+                  <div class="dropdown">
+                        <a href="#"><img src="icon/icon1.png" alt="Icon">ย่อย 1</a>
+                        <a href="#"><img src="icon/icon1.png" alt="Icon">ย่อย 2</a>
+                  </div>
+                </th>
+			  
+                <th class="menu-ita" style="color: #3154D9;"><span style="color: #000000">ITA/LPA</span><div class="dropdown">
+                      <a href="#"><img src="icon/icon1.png" alt="Icon">ย่อย 1</a>
+                      <a href="#"><img src="icon/icon1.png" alt="Icon">ย่อย 2</a>
+                  </div>
+                </th>
+            </tr>
+        </tbody>
+</table>
+	
+<table width="200" border="0" align="center">
+  <tbody>
+    <tr>
+      <td width="200" border="1" border-radius="10%" bgcolor="#3C19F0">
+		  <div class="marquee">
+		  	<h5 style="color: #FFFFFF; font-size: 16px">วิสัยทัศน์เทศบาลนครนครปฐม : สาน...สร้างมาตรฐานการศึกษา ต่อ...ยอดพัฒนาการบริการ ทำ...ชุมชนเป็นเมืองที่น่าอยู่อย่างยั่งยืน</h5>
+		  </div>
+	  </td>
+    </tr>
+  </tbody>
+</table>
+	
+<table width="800" border="0">
+      <tbody>
+        <tr>
+          <td width="650" align="center" bgcolor="#FFFFFF"><video width="1200" height="400" id="video1" preload="metadata" controls="controls" autoplay="autoplay" loop="loop" >
+            <source src="banner/vdobannerE.mp4" type="video/mp4">
+          </video></td>
+        </tr>
+      </tbody>
+</table>
+	<style>
+        .slideshow {
+    width: 1200px; /* ความกว้างของพื้นที่แสดงภาพ */
+    overflow: hidden; /* ซ่อนส่วนที่เกิน */
+    position: relative;
+    margin: auto;
+        }
+
+        .slide-images {
+            display: flex;
+            transition: transform 1s ease-in-out; /* ความเร็วและเอฟเฟกต์การเลื่อน */
+        }
+
+        .slide-images img {
+            width: 500px;
+            height: 250px;
+			border-radius: 10%;
+			border-color: dodgerblue;
+            flex-shrink: 0;
+        }
+
+        .slideshow:hover .slide-images {
+            animation-play-state: paused; /* หยุดเลื่อนเมื่อ hover */
+        }
+		
+		.prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+		
+		.next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .slide-images {
+            animation: slide 20s linear infinite;
+        }
+    </style>
+
+<body>
+    <div class="slideshow">
+        <div class="slide-images">
+			<a href="Rollimage/subroll1.jpg" target="_blank"><img src="Rollimage/roll1.jpg" alt="Image 1" width="250" height="150"></a>
+		  	<a href="Rollimage/roll2.jpg" target="_blank"><img src="Rollimage/roll2.jpg" alt="Image 2" width="250" height="150"></a>
+            <a href="Rollimage/roll3.jpg" target="_blank"><img src="Rollimage/roll3.jpg" alt="Image 3" width="250" height="150"></a>
+        	<a href="Rollimage/roll4.jpg" target="_blank"><img src="Rollimage/roll4.jpg" alt="Image 4" width="119" height="150"></a>
+		</div>
+		
+		 <!-- ปุ่มเลื่อน -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>		
+		
+    </div>
+	
+	<script>
+        let slideIndex = 0;
+
+        function showSlides(index) {
+            const slides = document.querySelector('.slide-images');
+            const totalSlides = slides.children.length;
+            slideIndex += index;
+
+            if (slideIndex >= totalSlides) {
+                slideIndex = 0;
+            } else if (slideIndex < 0) {
+                slideIndex = totalSlides - 1;
+            }
+
+            const slideWidth = slides.children[0].offsetWidth;
+            slides.style.transform = `translateX(${-slideIndex * slideWidth}px)`;
+        }
+
+        function plusSlides(n) {
+            const slides = document.querySelector('.slide-images');
+            slides.style.transition = 'transform 0.5s ease-in-out'; // เพิ่มเอฟเฟกต์เลื่อนเมื่อคลิกปุ่ม
+            slides.style.animation = 'none'; // หยุดแอนิเมชันอัตโนมัติเมื่อคลิกปุ่ม
+            showSlides(n);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlides(0); // แสดงสไลด์แรกเมื่อโหลดหน้าเว็บ
+        });
+		
+		let autoSlideTimeout;
+
+function plusSlides(n) {
+    const slides = document.querySelector('.slide-images');
+    slides.style.transition = 'transform 0.5s ease-in-out'; // เพิ่มเอฟเฟกต์เลื่อนเมื่อคลิกปุ่ม
+    slides.style.animation = 'none'; // หยุดแอนิเมชันอัตโนมัติเมื่อคลิกปุ่ม	
+    showSlides(n);	
+	
+	
+      clearTimeout(autoSlideTimeout); // ล้างตัวจับเวลาแอนิเมชันเก่า
+      autoSlideTimeout = setTimeout(startAutoSlide, 2000); // เริ่มแอนิเมชันใหม่หลังจาก 2 วินาที	
+	
+}
+
+function startAutoSlide() {
+    const slides = document.querySelector('.slide-images');
+    slides.style.animation = 'slide 30s linear infinite'; // เริ่มแอนิเมชันใหม่
+}
+
+function showSlides(index) {
+    const slides = document.querySelector('.slide-images');
+    const totalSlides = slides.children.length;
+    slideIndex += index;
+
+    if (slideIndex >= totalSlides) {
+        slideIndex = 0;
+    } else if (slideIndex < 0) {
+        slideIndex = totalSlides - 1;
+    }
+
+    const slideWidth = slides.children[0].offsetWidth;
+    slides.style.transform = `translateX(${-slideIndex * slideWidth}px)`;
+}
+
+// เริ่มแอนิเมชันอัตโนมัติเมื่อโหลดหน้าเว็บ
+document.addEventListener('DOMContentLoaded', () => {
+    startAutoSlide();
+    autoSlideTimeout = setTimeout(startAutoSlide, 2000); // เริ่มแอนิเมชันใหม่หลังจาก 2 วินาทีเมื่อคลิกปุ่ม
+	
+});
+
+    </script>
+	
+</body>
+</body>
+</html>
