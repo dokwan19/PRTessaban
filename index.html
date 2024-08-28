@@ -199,6 +199,36 @@ function MM_preloadImages() { //v3.0
 }
 </script>
 	
+	<!-- PDPA -->
+	<title>PDPA Consent</title>
+    <style>
+        #pdpa-banner {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            display: none;
+            z-index: 1000;
+        }
+
+        #pdpa-banner button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #pdpa-banner button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+	
+	
 </head>
 <body>
 <table height="88">
@@ -597,6 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </table>
 <p>&nbsp;</p>
 	
+	
 </body>
 	
 		<div id="welcomeMessage">
@@ -654,9 +685,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 </script>
-     
+	
+	<!-- PDPA -->	
+	<div id="pdpa-banner">
+        <p>เว็บไซต์นี้ใช้คุกกี้และจัดเก็บข้อมูลส่วนบุคคลของคุณเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ คุณสามารถศึกษานโยบายความเป็นส่วนตัวของเราได้ <a href="privacy-policy.html" style="color: #00f;">ที่นี่</a>. หากคุณยอมรับให้คลิก "ยอมรับ"</p>
+        <button id="accept-pdpa">ยอมรับ</button>
+    </div>
+
+    <script>
+        // Function to show the PDPA banner if consent is not already given
+        function showPDPABanner() {
+            const pdpaAccepted = localStorage.getItem('pdpaAccepted');
+            if (!pdpaAccepted) {
+                document.getElementById('pdpa-banner').style.display = 'block';
+            }
+        }
+
+        // Function to handle the "Accept" button click
+        function acceptPDPA() {
+            localStorage.setItem('pdpaAccepted', 'true');
+            document.getElementById('pdpa-banner').style.display = 'none';
+        }
+
+        // Event listener for the "Accept" button
+        document.getElementById('accept-pdpa').addEventListener('click', acceptPDPA);
+
+        // Show the banner on page load
+        window.onload = showPDPABanner;
+    </script>
 	            
-	<!-- จำนวนนับ -->
+<!-- จำนวนนับ -->
 	<a><img alt="stats counter" border="0" src="https://smallcounter.com/online/ccc.php?id=1724810402"></a><br>	
 <a href="https://smallcounter.com"></a>   
 		
