@@ -226,6 +226,29 @@ function MM_preloadImages() { //v3.0
         #pdpa-banner button:hover {
             background-color: #0056b3;
         }
+
+        #pdpa-banner #decline-pdpa {
+            background-color: #FF0000;
+        }
+
+        #pdpa-banner #decline-pdpa:hover {
+            background-color: #cc0000;
+        }
+
+        #pdpa-reset {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        #pdpa-reset:hover {
+            background-color: #333;
+        }
     </style>
 	
 	
@@ -688,15 +711,21 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	<!-- PDPA -->	
 	<div id="pdpa-banner">
-        <p>เว็บไซต์นี้ใช้คุกกี้และจัดเก็บข้อมูลส่วนบุคคลของคุณเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ คุณสามารถศึกษานโยบายความเป็นส่วนตัวของเราได้ <a href="Privacy-policy.html" style="color: #00f;">ที่นี่</a>. หากคุณยอมรับให้คลิก "ยอมรับ"</p>
+        <p>เว็บไซต์นี้ใช้คุกกี้และจัดเก็บข้อมูลส่วนบุคคลของคุณเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ คุณสามารถศึกษานโยบายความเป็นส่วนตัวของเราได้ <a href="privacy-policy.html" style="color: #00f;">ที่นี่</a>. หากคุณยอมรับให้คลิก "ยอมรับ" หรือคลิก "ไม่ยอมรับ" หากคุณไม่ต้องการ</p>
         <button id="accept-pdpa">ยอมรับ</button>
+        <button id="decline-pdpa">ไม่ยอมรับ</button>
+    </div>
+
+    <div id="pdpa-reset">
+        <p>รีเซ็ตการตั้งค่าคุกกี้</p>
     </div>
 
     <script>
-        // Function to show the PDPA banner if consent is not already given
+        // Function to show the PDPA banner if consent is not already given or declined
         function showPDPABanner() {
             const pdpaAccepted = localStorage.getItem('pdpaAccepted');
-            if (!pdpaAccepted) {
+            const pdpaDeclined = localStorage.getItem('pdpaDeclined');
+            if (!pdpaAccepted && !pdpaDeclined) {
                 document.getElementById('pdpa-banner').style.display = 'block';
             }
         }
@@ -704,13 +733,30 @@ document.addEventListener('DOMContentLoaded', () => {
         // Function to handle the "Accept" button click
         function acceptPDPA() {
             localStorage.setItem('pdpaAccepted', 'true');
+            localStorage.removeItem('pdpaDeclined');
             document.getElementById('pdpa-banner').style.display = 'none';
         }
 
-        // Event listener for the "Accept" button
-        document.getElementById('accept-pdpa').addEventListener('click', acceptPDPA);
+        // Function to handle the "Decline" button click
+        function declinePDPA() {
+            localStorage.setItem('pdpaDeclined', 'true');
+            localStorage.removeItem('pdpaAccepted');
+            document.getElementById('pdpa-banner').style.display = 'none';
+        }
 
-        // Show the banner on page load
+        // Function to reset PDPA consent
+        function resetPDPA() {
+            localStorage.removeItem('pdpaAccepted');
+            localStorage.removeItem('pdpaDeclined');
+            document.getElementById('pdpa-banner').style.display = 'block';
+        }
+
+        // Event listeners for the buttons
+        document.getElementById('accept-pdpa').addEventListener('click', acceptPDPA);
+        document.getElementById('decline-pdpa').addEventListener('click', declinePDPA);
+        document.getElementById('pdpa-reset').addEventListener('click', resetPDPA);
+
+        // Show the banner on page load if needed
         window.onload = showPDPABanner;
     </script>
 	            
