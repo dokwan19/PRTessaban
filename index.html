@@ -202,6 +202,7 @@ function MM_preloadImages() { //v3.0
 	<!-- PDPA -->
 	<title>PRTessaban</title>
     <style>
+        /* PDPA Banner */
         #pdpa-banner {
             position: fixed;
             bottom: 0;
@@ -235,6 +236,7 @@ function MM_preloadImages() { //v3.0
             background-color: #cc0000;
         }
 
+        /* Cookie Reset Button */
         #pdpa-reset {
             position: fixed;
             bottom: 10px;
@@ -248,6 +250,39 @@ function MM_preloadImages() { //v3.0
 
         #pdpa-reset:hover {
             background-color: #333;
+        }
+
+        /* Cookie Settings Menu */
+        #cookie-settings {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1002;
+            text-align: left;
+            width: 300px;
+        }
+
+        #cookie-settings input {
+            margin-right: 10px;
+        }
+
+        #cookie-settings button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        #cookie-settings button:hover {
+            background-color: #0056b3;
         }
     </style>
 	
@@ -711,9 +746,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	<!-- PDPA -->	
 	<div id="pdpa-banner">
-        <p>เว็บไซต์นี้ใช้คุกกี้และจัดเก็บข้อมูลส่วนบุคคลของคุณเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ คุณสามารถศึกษานโยบายความเป็นส่วนตัวของเราได้ <a href="Privacy-policy.html" style="color: #00f;">ที่นี่</a>. หากคุณยอมรับให้คลิก "ยอมรับ" หรือคลิก "ไม่ยอมรับ" หากคุณไม่ต้องการ</p>
+        <p>เว็บไซต์นี้ใช้คุกกี้และจัดเก็บข้อมูลส่วนบุคคลของคุณเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ คุณสามารถศึกษานโยบายความเป็นส่วนตัวของเราได้ <a href="privacy-policy.html" style="color: #00f;">ที่นี่</a>. หากคุณยอมรับให้คลิก "ยอมรับ" หรือคลิก "ไม่ยอมรับ" หากคุณไม่ต้องการ</p>
         <button id="accept-pdpa">ยอมรับ</button>
         <button id="decline-pdpa">ไม่ยอมรับ</button>
+        <button id="open-settings">การตั้งค่าคุกกี้</button>
+    </div>
+
+    <div id="cookie-settings">
+        <h3>การตั้งค่าคุกกี้</h3>
+        <label><input type="checkbox" id="necessary-cookies" checked disabled> คุกกี้ที่จำเป็น</label><br>
+        <label><input type="checkbox" id="analytics-cookies"> คุกกี้เพื่อการวิเคราะห์</label><br>
+        <label><input type="checkbox" id="advertising-cookies"> คุกกี้เพื่อการโฆษณา</label><br>
+        <button id="save-settings">บันทึกการตั้งค่า</button>
     </div>
 
     <div id="pdpa-reset">
@@ -734,6 +778,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function acceptPDPA() {
             localStorage.setItem('pdpaAccepted', 'true');
             localStorage.removeItem('pdpaDeclined');
+            saveCookieSettings(); // Save current cookie settings
             document.getElementById('pdpa-banner').style.display = 'none';
         }
 
@@ -748,17 +793,48 @@ document.addEventListener('DOMContentLoaded', () => {
         function resetPDPA() {
             localStorage.removeItem('pdpaAccepted');
             localStorage.removeItem('pdpaDeclined');
+            localStorage.removeItem('cookieSettings');
             document.getElementById('pdpa-banner').style.display = 'block';
+        }
+
+        // Function to open cookie settings menu
+        function openCookieSettings() {
+            document.getElementById('cookie-settings').style.display = 'block';
+        }
+
+        // Function to save cookie settings
+        function saveCookieSettings() {
+            const settings = {
+                necessary: true, // Always necessary
+                analytics: document.getElementById('analytics-cookies').checked,
+                advertising: document.getElementById('advertising-cookies').checked
+            };
+            localStorage.setItem('cookieSettings', JSON.stringify(settings));
+            document.getElementById('cookie-settings').style.display = 'none';
+        }
+
+        // Load previous cookie settings
+        function loadCookieSettings() {
+            const settings = JSON.parse(localStorage.getItem('cookieSettings'));
+            if (settings) {
+                document.getElementById('analytics-cookies').checked = settings.analytics;
+                document.getElementById('advertising-cookies').checked = settings.advertising;
+            }
         }
 
         // Event listeners for the buttons
         document.getElementById('accept-pdpa').addEventListener('click', acceptPDPA);
         document.getElementById('decline-pdpa').addEventListener('click', declinePDPA);
         document.getElementById('pdpa-reset').addEventListener('click', resetPDPA);
+        document.getElementById('open-settings').addEventListener('click', openCookieSettings);
+        document.getElementById('save-settings').addEventListener('click', saveCookieSettings);
 
         // Show the banner on page load if needed
-        window.onload = showPDPABanner;
-    </script>
+        window.onload = function() {
+            showPDPABanner();
+            loadCookieSettings();
+        };
+   </script>
 	            
 <!-- จำนวนนับ -->
 	<a><img alt="stats counter" border="0" src="https://smallcounter.com/online/ccc.php?id=1724810402"></a><br>	
