@@ -391,7 +391,7 @@ function MM_preloadImages() { //v3.0
 <table width="1200" height="250" border="0">
       <tbody>
         <tr>
-          <td width="800" align="center" bgcolor="#FFFFFF"><video width="1000" height="250" id="video1" preload="metadata" controls="non" autoplay="autoplay" loop="loop" >
+          <td width="800" align="center" bgcolor="#FFFFFF"><video width="1000" height="250" id="video1" preload="metadata" controls="none" autoplay="autoplay" loop="loop" >
             <source src="banner/Teerasak.mp4" type="video/mp4">
           </video></td>                   
         </tr>
@@ -621,8 +621,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <table width="200" border="0">
 		   <tbody>
 		     <tr>
-		       <td width="610" align="center" bgcolor="#35ADE7" style="font-size: 18px; color:black; font-weight: bold; border-right: 1px solid white;">ข่าวประชาสัมพันธ์</td>
-		       <td width="610" align="center" bgcolor="#35ADE7" style="font-size: 18px; color:black; font-weight: bold; border-right: 1px solid white;">กิจกรรม</td>
+		       <td width="610" align="center" bgcolor="#35ADE7" style="font-size: 18px; color:black; font-weight: bold; border-right: 1px solid white;">unknown</td>
+		       <td width="610" align="center" bgcolor="#35ADE7" style="font-size: 18px; color:black; font-weight: bold; border-right: 1px solid white;">unknown</td>
 	         </tr>
 		     <tr>
 		       <td bgcolor="#82B8EB" style="border-right: 1px solid white;">&nbsp;</td>
@@ -750,17 +750,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	<!-- PDPA -->	
 	<div id="pdpa-banner">
         <p>เว็บไซต์นี้ใช้คุกกี้และจัดเก็บข้อมูลส่วนบุคคลของคุณเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ คุณสามารถศึกษานโยบายความเป็นส่วนตัวของเราได้ <a href="privacy-policy.html" style="color: #00f;">ที่นี่</a>. หากคุณยอมรับให้คลิก "ยอมรับ" หรือคลิก "ไม่ยอมรับ" หากคุณไม่ต้องการ</p>
-        <button id="accept-pdpa">ยอมรับ</button>
-        <button id="decline-pdpa">ไม่ยอมรับ</button>
-        <button id="open-settings">การตั้งค่าคุกกี้</button>
+	<p>This website uses cookies and stores your personal information to improve your user experience. You can study our privacy policy.</p>	
+        <button id="accept-pdpa">Accept</button>
+        <button id="decline-pdpa">Don't accept</button>
+        <button id="open-settings">Cookie settings</button>
     </div>
 
     <div id="cookie-settings">
         <h3>การตั้งค่าคุกกี้</h3>
-        <label><input type="checkbox" id="necessary-cookies" checked disabled> คุกกี้ที่จำเป็น</label><br>
-        <label><input type="checkbox" id="analytics-cookies"> คุกกี้เพื่อการวิเคราะห์</label><br>
-        <label><input type="checkbox" id="advertising-cookies"> คุกกี้เพื่อการโฆษณา</label><br>
-        <button id="save-settings">บันทึกการตั้งค่า</button>
+        <label><input type="checkbox" id="necessary-cookies" checked disabled> Necessary cookies</label><br>
+        <label><input type="checkbox" id="analytics-cookies"> Analytical cookies</label><br>
+        <label><input type="checkbox" id="advertising-cookies"> Advertising cookies</label><br>
+        <button id="save-settings">Save settings</button>
     </div>
 
     <div id="pdpa-reset">
